@@ -1,0 +1,3 @@
+[submodule "puppet/modules/kafka"]
+	path = puppet/modules/kafka
+	url = ssh://otto@gerrit.wikimedia.org:29418/operations/puppet/kafka

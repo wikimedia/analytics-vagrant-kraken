@@ -2,11 +2,6 @@ Exec {
   logoutput => on_failure,
 }
 
-Package {
-  require => Exec['update-package-index'],
-}
-
-
 if ( $::virtualbox_version ) {
   notice("Detected VirtualBox version ${::virtualbox_version}")
 } else {
@@ -18,3 +13,15 @@ group { 'puppet':
 }
 
 class { 'base': }
+
+class { '::kafka': }
+file { '/var/lib/kafka':
+  ensure  => 'directory',
+  owner   => 'kafka',
+  group   => 'kafka',
+  require => Class['kafka'],
+}
+class { '::kafka::server':
+  data_dir => '/var/lib/kafka/data',
+  require  => File['/var/lib/kafka'],
+}

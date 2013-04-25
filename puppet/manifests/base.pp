@@ -1,5 +1,6 @@
 class base {
   class { 'base::apt::wikimedia': }
+  class { 'base::java':           }
 }
 
 class base::apt::wikimedia {
@@ -22,8 +23,17 @@ class base::apt::wikimedia {
   $keyurl = 'http://apt.wikimedia.org/autoinstall/keyring/wikimedia-archive-keyring.gpg'
 
   exec { 'apt-key_add_wikimedia':
-    command => "/usr/bin/curl $keyurl | /usr/bin/gpg --import && gpg --export --armor Wikimedia | /usr/bin/apt-key add -",
+    command => "/usr/bin/curl ${keyurl} | /usr/bin/gpg --import && gpg --export --armor Wikimedia | /usr/bin/apt-key add -",
     unless  => '/usr/bin/apt-key list | grep -q Wikimedia',
     require => Apt::Repository['wikimedia'],
+  }
+}
+
+
+class base::java {
+  # Install Sun/Oracle Java JDK
+  java { 'java-6-oracle':
+    distribution => 'oracle',
+    version      => 6,
   }
 }
