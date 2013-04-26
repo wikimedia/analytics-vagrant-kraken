@@ -75,7 +75,7 @@ Vagrant.configure('2') do |config|
 
         puppet.facter = {
             'virtualbox_version' => get_virtualbox_version,
-            'fqdn'               => config.vm.hostname,
+            'domain'             => 'local',
         }
     end
 
