@@ -1,3 +1,6 @@
 [submodule "puppet/modules/kafka"]
 	path = puppet/modules/kafka
 	url = ssh://otto@gerrit.wikimedia.org:29418/operations/puppet/kafka
+[submodule "puppet/modules/cdh4"]
+	path = puppet/modules/cdh4
+	url = git://github.com/wikimedia/operations-puppet-cdh4.git
