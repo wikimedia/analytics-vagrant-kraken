@@ -1,7 +1,7 @@
 class base {
   class { 'base::java':           }
   class { 'base::apt::wikimedia': }
-  class { 'base::apt::cdh4':  }
+  class { 'base::apt::cdh4':      }
 }
 
 class base::java {

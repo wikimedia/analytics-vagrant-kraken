@@ -14,4 +14,8 @@ group { 'puppet':
 
 class { 'base': }
 
-class { 'kraken': }
+# Set up Kraken Data Analysis Platform! Woooot!
+# Currently this includes:
+# - CDH4 Hadoop
+#
+class { 'kraken::hadoop': }
