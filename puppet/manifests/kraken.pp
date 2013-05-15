@@ -11,7 +11,7 @@ class kraken::hadoop {
     "${hadoop_data_directory}/b",
   ]
 
-  require kraken::config
+  # require kraken::config
 
   class { '::cdh4::hadoop':
     use_yarn             => true,
