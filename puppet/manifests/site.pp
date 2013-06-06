@@ -12,10 +12,15 @@ group { 'puppet':
   ensure => present,
 }
 
-class { 'base': }
+include base
 
-# Set up Kraken Data Analysis Platform! Woooot!
-# Currently this includes:
-# - CDH4 Hadoop
-#
-class { 'kraken::hadoop': }
+# Hadoop
+class { 'role::analytics::hadoop::master': }
+class { 'role::analytics::hadoop::worker':
+    require => Class['role::analytics::hadoop::master']
+}
+
+# Zookeeper
+# Sigh, we can't puppetize zookeeper and hadoop at the same time on the same node :(
+# class { 'role::analytics::zookeeper::server': }
+

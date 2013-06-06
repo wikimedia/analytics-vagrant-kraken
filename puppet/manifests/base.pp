@@ -1,16 +1,16 @@
 class base {
   class { 'base::java':           }
   class { 'base::apt::wikimedia': }
-  class { 'base::apt::cdh4':      }
+  # class { 'base::apt::cdh4':      }
 }
 
 class base::java {
-  # Install Sun/Oracle Java JDK
-  java { 'java-6-oracle':
-    distribution => 'oracle',
-    version      => 6,
-  }
+  java { 'openjdk': distribution => 'openjdk' }
 }
+
+# class base::local_hostname {
+#     
+# }
 
 class base::apt::wikimedia {
   class { 'apt::update': }

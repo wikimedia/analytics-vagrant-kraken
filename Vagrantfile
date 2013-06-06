@@ -37,7 +37,7 @@ Vagrant.configure('2') do |config|
 
     config.vm.network :private_network,
         ip: '10.11.12.14'
-
+        
     config.vm.synced_folder '.', '/vagrant',
         id: 'vagrant-root',
         owner: 'vagrant',
@@ -64,8 +64,13 @@ Vagrant.configure('2') do |config|
     config.vm.provision :puppet do |puppet|
         puppet.module_path = 'puppet/modules'
         puppet.manifests_path = 'puppet/manifests'
+        puppet.templates_path = 'puppet/templates'
         puppet.manifest_file = 'site.pp'
         puppet.options = '--verbose'
+
+        # Grrr, this shouldn't be necessary, but puppet can't find
+        # the templates otherwise.
+        puppet.options << " --templatedir /vagrant/puppet/templates"
 
         # For more output, uncomment the following line:
         # puppet.options << ' --debug'
