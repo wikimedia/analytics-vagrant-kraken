@@ -20,7 +20,3 @@ class { 'role::analytics::hadoop::worker':
     require => Class['role::analytics::hadoop::master']
 }
 
-# Zookeeper
-# Sigh, we can't puppetize zookeeper and hadoop at the same time on the same node :(
-# class { 'role::analytics::zookeeper::server': }
-
